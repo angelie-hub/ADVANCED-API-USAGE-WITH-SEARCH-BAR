@@ -23,7 +23,7 @@ export default function MangaSearch() {
       const res = await fetch(searchUrl);
       const data = await res.json();
   
-      console.log("Full API Response:", data); // Log the full response to inspect structure
+      console.log("Full API Response:", data);
 
       if (data.data.length === 0) {
         setManga([]);
@@ -33,18 +33,17 @@ export default function MangaSearch() {
       }
 
       const mangasWithCovers = data.data.map((manga) => {
-        const coverUrl = manga.images ? manga.images.jpg.image_url : ""; // Check if 'images' exists
-        
-        console.log(`Cover URL for "${manga.title}":`, coverUrl); // Log the cover URL
+        const coverUrl = manga.images ? manga.images.jpg.image_url : ""; 
+        console.log(`Cover URL for "${manga.title}":`, coverUrl); 
 
         return {
           id: manga.mal_id,
           title: manga.title,
-          coverUrl: coverUrl || "", // Ensure fallback to empty string
+          coverUrl: coverUrl || "", 
         };
       });
 
-      console.log("Manga with Covers:", mangasWithCovers); // Log the final data
+      console.log("Manga with Covers:", mangasWithCovers); 
 
       setManga(mangasWithCovers);
       setNoResults(false);
@@ -100,7 +99,7 @@ export default function MangaSearch() {
               {m.coverUrl ? (
                 <img src={m.coverUrl} alt={m.title} className="manga-cover" />
               ) : (
-                <div className="manga-cover" style={{ background: '#ccc' }}></div> // Placeholder if no cover image
+                <div className="manga-cover" style={{ background: '#ccc' }}></div> 
               )}
               <span className="manga-title-text">{m.title}</span>
             </li>
